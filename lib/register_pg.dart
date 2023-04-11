@@ -112,7 +112,7 @@ class _register_pgState extends State<register_pg> {
                                 Fluttertoast.showToast(
                                     msg: "User register successfully ",
                                     toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.CENTER,
+                                    gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 1,
                                     backgroundColor: Colors.green,
                                     textColor: Colors.white,
@@ -130,7 +130,7 @@ class _register_pgState extends State<register_pg> {
                                   Fluttertoast.showToast(
                                       msg: "The password is too weak !",
                                       toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.TOP,
+                                      gravity: ToastGravity.BOTTOM,
                                       timeInSecForIosWeb: 1,
                                       backgroundColor: Colors.white,
                                       textColor: Colors.red,
@@ -140,7 +140,7 @@ class _register_pgState extends State<register_pg> {
                                   Fluttertoast.showToast(
                                       msg: "The account already exists for that email!",
                                       toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.TOP,
+                                      gravity: ToastGravity.BOTTOM,
                                       timeInSecForIosWeb: 1,
                                       backgroundColor: Colors.white,
                                       textColor: Colors.red,

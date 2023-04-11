@@ -36,7 +36,7 @@ class _otp_loginState extends State<otp_login> {
           child: TextField(
             keyboardType: TextInputType.number,maxLength:10,
             controller:tnumber,decoration:InputDecoration(
-            prefixText:"+91 ",prefixStyle:TextStyle(color:Colors.black,fontSize:16),
+            prefixText:"+91",prefixStyle:TextStyle(color:Colors.black,fontSize:16),
               border:OutlineInputBorder(borderRadius:BorderRadius.circular(15)),
               hintText:"Enter Your 10-Digit Number",labelText:"Mobile Number",
               prefixIcon:  Icon(Icons.call,color:Colors.green),
@@ -142,7 +142,6 @@ class _otp_loginState extends State<otp_login> {
                      fontSize: 16.0
                  );
                }
-
              }, child:Text("Verify OTP",style:TextStyle(
                  fontSize:16,letterSpacing:1.5),))
        ],)

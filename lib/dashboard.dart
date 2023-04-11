@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously, avoid_print
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +8,7 @@ import 'package:firebase_login/register_pg.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({Key? key}) : super(key: key);
@@ -147,13 +148,13 @@ class _dashboardState extends State<dashboard> {
                       mainAxisAlignment:MainAxisAlignment.start,
                       children: [
                         Icon(Icons.phone_android,size:28),
-                        Text("  Sign In With OTP",style:TextStyle(letterSpacing:1,color:Colors.black),)
+                        Text("Sign In With OTP",style:TextStyle(letterSpacing:1,color:Colors.black),)
                       ],)
                 ),
               ),
                 InkWell(
                   onTap: () {
-
+                    signInWithGoogle();
                   },
                   child: Container(
                       width:175,margin:EdgeInsets.only(top:25,bottom:40),
@@ -183,5 +184,31 @@ class _dashboardState extends State<dashboard> {
         ),
       ),
     ));
+  }
+  Future<void> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,);
+    // Once signed in, return the UserCredential
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+    Navigator.push(context,MaterialPageRoute(builder: (context) {
+      return Home_pg();
+    },));
+    Fluttertoast.showToast(
+        msg: "Google Sign In Successfully !",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green.shade300,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    print(userCredential);
   }
 }
